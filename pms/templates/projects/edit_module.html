@@ -1,0 +1,44 @@
+{% extends "../base.html" %} {% load static %} {% block csslink %}
+<link rel="stylesheet" href="{% static 'css/projects/edit_module.css' %}" />
+{% endblock csslink %} {% block content %}
+<div class="regbox">
+  <div id="manager">
+    <div class="devreg_container">
+      <h1 class="form-title">Edit Module</h1>
+      <form method="post">
+        {% csrf_token %}
+        <div class="main-user-info">
+          <div class="user-input-box">
+          <div class="title-tech">
+            <div class="indiv" style="pointer-events: none;">
+                <label for="id_title" >Module:</label>
+                {{ form.project }}
+            </div>
+            <div class="indiv">
+              <label for="id_technology">Name:</label>
+              {{form.module_name}}
+            </div>
+          </div>
+          <label for="id_description">Description:</label>
+          {{form.description}}
+          <label for="id_estimated_hours">Estimated hours:</label>
+        {{form.estimated_hours}}
+          <div class="title-tech">
+            <div class="indiv">
+          <label for="id_start_date">Start date:</label>
+
+          {{form.start_date}}
+        </div>
+        
+        </div> 
+       
+        </div>
+       
+        <div class="form-submit-btn">
+          <input type="submit" value="Update"  />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

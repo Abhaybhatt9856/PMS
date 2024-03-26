@@ -1,0 +1,174 @@
+{% extends "../base.html" %} {% load static %} {% block csslink %}
+<link rel="stylesheet" href="{% static 'css/projects/man_dash.css' %}" />
+{% endblock csslink %} {% block content %}
+<div class="regbox">
+  <div id="manager">
+    <div class="man_dash_container">
+      <h1 class="dash-title" style="color: white">Manager Dashboard</h1>
+      <hr />
+      <div class="manup">
+        <div style="width: 400px; height: 400px;">
+          <canvas id="myChart"></canvas>
+        </div>
+        <div style="width: 600px; margin-left: 200px; margin-top: 40px">
+          <section id="portfolio" class="portfolio">
+            <div class="container">
+              <div class="row">
+                <div class="col-20 col-md-20 col-lg-8">
+                  <div class="card text-light text-center bg-white pb-2">
+                    <div class="card-body text-dark">
+                      <h3 class="card-title">Project</h3>
+                      <div style="display: flex; flex-direction: column;">
+                        <a class="btn btn-primary" style="margin-bottom: 10px;" href="{% url 'project_list' %}">
+                            Project List
+                        </a>
+                        <a class="btn btn-primary  " style="margin-bottom: 10px;" >
+                            Developer List
+                        </a>
+                        <a class="btn btn-primary" style="margin-bottom: 10px;" href='{% url "create_project" %}'>
+                            Create Project
+                        </a>
+                        <button class="btn btn-primary" style="margin-bottom: 10px;">
+                            Add Developer
+                        </button>
+                        <button class="btn btn-primary" style="margin-bottom: 10px;">
+                            Task List
+                        </button>
+                    </div>
+                    
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div style="background-color: white; border-radius: 10px; ">
+        <section id="portfolio" class="portfolio section-padding">
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-12 col-lg-4">
+                <div class="card text-light text-center bg-white pb-2">
+                  <div class="card-body text-dark">
+                    <div class="img-area mb-4">
+                      <img src="{% static "static/img/project.jpg" %}"
+                      class="img-fluid" alt="">
+                    </div>
+                    <h3 class="card-title">Active Project</h3>
+                    <table class="table">
+                      <thead class="table-dark">
+                        <th>Project</th>
+                        <th>Action</th>
+                      </thead>
+                      <tbody>
+                        {% for i in data_active %}
+                        <tr>
+                          <td>{{i.title}}</td>
+                          <td>
+                            <a href="{% url "project_show" i.id  %}" class="btn btn-primary">Show</a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+
+                    <!-- <button class="btn bg-warning text-dark">Learn More</button> -->
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-12 col-lg-4">
+                <div class="card text-light text-center bg-white pb-2">
+                  <div class="card-body text-dark">
+                    <div class="img-area mb-4">
+                      <img src="{% static "img/project.jpg" %}"
+                      class="img-fluid" alt="">
+                    </div>
+                    <h3 class="card-title">On Hold</h3>
+                    <table class="table">
+                      <thead class="table-dark">
+                        <th>Project</th>
+                        <th>Action</th>
+                      </thead>
+                      <tbody>
+                        {% for i in data_Hold %}
+                        <tr>
+                          <td>{{i.title}}</td>
+                          <td>
+                            <a href="{% url "project_show" i.id  %}" class="btn btn-primary">Show</a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                    <!-- <button class="btn bg-warning text-dark">learn More</button> -->
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-12 col-lg-4">
+                <div class="card text-light text-center bg-white pb-2">
+                  <div class="card-body text-dark">
+                    <div class="img-area mb-4">
+                      <img src="{% static "img/project.jpg" %}"
+                      class="img-fluid" alt="">
+                    </div>
+                    <h3 class="card-title">Completed</h3>
+                    <table class="table">
+                      <thead class="table-dark">
+                        <th>Project</th>
+                        <th>Action</th>
+                      </thead>
+                      <tbody>
+                        {% for i in data_completed %}
+                        <tr>
+                          <td>{{i.title}}</td>
+                          <td>
+                            <a href="{% url "project_show" i.id  %}" class="btn btn-primary">Show</a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                    <!-- <button class="btn bg-warning text-dark">Learn More</button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Active', 'hold', 'completed'],
+        datasets: [{
+          label: 'Project Status',
+          data: [{{ active }},
+          {{ Hold }},
+          {{ completed }}],
+          backgroundColor: [
+          'red',   // Active - Red
+          'Blue',    // Completed - Blue
+          'rgba(94, 255, 0, 0.753)'     // On Hold - Green
+        ],
+          borderWidth: 1
+        }],
+
+
+      },
+      options: {
+        responsive: true,
+        aspectRatio: 1,
+      }
+    });
+  </script>
+  {% endblock content %}
+</div>

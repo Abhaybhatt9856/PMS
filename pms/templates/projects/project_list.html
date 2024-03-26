@@ -1,0 +1,90 @@
+{% extends "../base.html" %} {% load static %} {% block csslink %}
+<link rel="stylesheet" href="{% static 'css/projects/project_list.css' %}" />
+{% endblock csslink %} {% block content %}
+<div class="regbox">
+  <div id="manager">
+    <div class="dev_dash_container">
+      <h1 class="dash-title">Project List</h1>
+      <hr/>
+      <div style=" display: flex; ">
+      <div>
+        <table class="table" style="width: 700px; border: 2px solid black">
+          <thead class="table-dark" style="font-size: larger">
+            <td>ID</td>
+            <td>Projects</td>
+            <td style="text-align: center">Action</td>
+          </thead>
+          <tbody>
+            {% for i in project %}
+            <tr style="font-size: larger">
+              <td><b>{{i.id}}</b></td>
+              <td><b>{{i.title}}</b></td>
+              <td style="text-align: center">
+                <a href="{% url "project_show" i.id %}" class="btn btn-primary">Show</a>
+                <a href="" class="btn btn-primary">Edit</a>
+                <a href="{% url "project_report" i.id %}" class="btn btn-primary">Report</a>
+                <a href="" class="btn btn-danger">Delete</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-left: 70px;">
+        <h1 class="dash-title">Project Graph</h1>
+      <hr />
+        <canvas id="myChart"></canvas>
+     
+        <b>
+        <br>
+        <br>
+        <br>
+        Complate Projects : {{active}}<br>
+        Complate Projects : {{completed}}<br>
+        Complate Projects : {{cancelled}}<br>
+        Complate Projects : {{Hold}}<br>
+        </b>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- javascript -->
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Active', 'completed', 'canceled', 'hold'],
+        datasets: [{
+          label: 'Project Status',
+          data: [{{ active }},
+          {{ completed }},
+          {{ cancelled }},
+          {{ Hold }}],
+          backgroundColor: [
+          'green',   // Active - Red
+          'Blue',    // Completed - Blue
+          'red',    // Cancelled - Yellow
+          'Yellow'     // On Hold - Green
+        ],
+          borderWidth: 1
+        }],
+
+
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+  {% endblock content %}
+</div>

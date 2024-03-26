@@ -1,0 +1,48 @@
+{% extends "../base.html" %} 
+{% load static %} 
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/users/login.css' %}" />
+{% endblock csslink %} {% block content %}
+<div class="regbox">
+  <div id="login">
+    <div class="devreg_container">
+      <h1 class="form-title">Login</h1>
+      <form method="post">
+        <div class="main-user-info">
+          <div class="user-input-box">
+            {% csrf_token %}
+            <div class="input-box">
+              <label for="{{form.username.id_for_label }}">Username:</label>
+              <input
+                type="text"
+                name="{{form.username.name}}"
+                class="form"
+                placeholder=" Enter Your Username"
+              />
+              <span class="text-danger">{{form.username.errors}}</span>
+            </div>
+            <br />
+            <div class="input-box">
+              <label for="{{form.password.id_for_label }}">Password:</label>
+              <input
+                type="text"
+                name="{{form.password.name}}"
+                class="form"
+                placeholder=" Enter Your password"
+              />
+              <span class="text-danger">{{form.password.errors}}</span>
+            </div>
+            <br />
+          </div>
+        </div>
+        <div class="form-submit-btn">
+          <input type="submit" value="Login" />
+        </div>
+        <div>
+            <a href="{% url 'home' %}#image-generator-top">Don't have a account?</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

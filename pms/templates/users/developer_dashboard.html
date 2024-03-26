@@ -1,0 +1,114 @@
+{% extends "../base.html" %} {% load static %} {% block csslink %}
+<link rel="stylesheet" href="{% static 'css/projects/man_dash.css' %}" />
+{% endblock csslink %} {% block content %}
+<div class="regbox">
+  <div id="manager">
+    <div class="man_dash_container">
+      <h1 class="dash-title" style="color: white">Developer Dashboard</h1>
+      <hr />
+      <div style="background-color: white; border-radius: 10px; ">
+        <section id="portfolio" class="portfolio section-padding">
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-12 col-lg-4">
+                <div class="card text-light text-center bg-white pb-2">
+                  <div class="card-body text-dark">
+                    
+                    <h3 class="card-title">Not Started</h3>
+                    <table class="table">
+                      <thead class="table-dark">
+                        <th>Task</th>
+                        <th>Action</th>
+                      </thead>
+                      <tbody>
+                        {% for i in data %}
+                        {% if i.taksid__status == "Not Started"  %}
+                        <tr>
+                            <td>
+                                {{i.taksid__title}}
+                            </td>
+                            <td>
+                                <form action="{% url 'update_status' i.taksid__id %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="submit" value="Change Status">
+                                </form> 
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                      </tbody>
+                    </table>
+
+                    <!-- <button class="btn bg-warning text-dark">Learn More</button> -->
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-12 col-lg-4">
+                <div class="card text-light text-center bg-white pb-2">
+                  <div class="card-body text-dark">
+                    
+                    <h3 class="card-title">Progress</h3>
+                    <table class="table">
+                      <thead class="table-dark">
+                        <th>Task</th>
+                        <th>Action</th>
+                      </thead>
+                      <tbody>
+                        {% for i in data %}
+                        {% if i.taksid__status == "Progress"  %}
+                        <tr>
+                            <td>
+                                {{i.taksid__title}}
+                            </td>
+                            <td>
+                                <form action="{% url 'update_status' i.taksid__id %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="submit" value="Change Status">
+                                </form> 
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                    <!-- <button class="btn bg-warning text-dark">learn More</button> -->
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-12 col-lg-4">
+                <div class="card text-light text-center bg-white pb-2">
+                  <div class="card-body text-dark">
+                    
+                    <h3 class="card-title">Completed</h3>
+                    <table class="table">
+                      <thead class="table-dark">
+                        <th>Task</th>
+                        <th>Action<th>
+                      </thead>
+                      <tbody>
+                  
+                        {% for i in data %}
+                        {% if i.taksid__status == "complete"  %}
+                        <tr>
+                            <td>
+                                {{i.taksid__title}}
+                            </td>
+                            <td>
+                              <a href="{% url 'project_report' i.taksid__project %}" class="btn btn-primary">Report</a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                    <!-- <button class="btn bg-warning text-dark">Learn More</button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  {% endblock content %}
+</div>

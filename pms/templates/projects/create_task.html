@@ -1,0 +1,93 @@
+{% extends "../base.html" %} {% load static %} {% block csslink %}
+<link rel="stylesheet" href="{% static 'css/projects/create_task.css' %}" />
+{% endblock csslink %} {% block content %}
+<div class="regbox">
+    <div id="manager">
+       
+            <div class="devreg_container">
+                <h1 class="form-title">Create Task</h1>
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div class="main-user-info">
+                        <div class="user-input-box">
+                            <div class="title-tech">
+                                <div class="indiv" style="pointer-events: none;">
+                                    <label for="id_title">Module</label>
+                                    {{form.module}}
+                                </div>
+                                <div class="indiv" style="pointer-events: none;">
+                                    <label for="id_technology">Project:</label>
+
+                                    {{form.project}}
+                                </div>
+                            </div>
+                            <div class="title-tech">
+                                <div class="indiv">
+                                    <label for="id_title">Title</label>
+                                    {{form.title}}
+                                </div>
+                                <div class="indiv">
+                                    <label for="id_technology">Priority:</label>
+
+                                    {{form.priority}}
+                                </div>
+                            </div>
+                            <label for="id_description">Description:</label>
+
+                            {{form.description}}
+
+                            <label for="id_estimated_hours"> Status:</label>
+
+                            {{form.status}}
+                            <div class="title-tech">
+                                <div class="indiv">
+                                    <label for="id_start_date">Estimated Minutes:</label>
+                                    {{form.estimated_minutes}}
+                                </div>
+                                <div class="indiv">
+                                    <label for="id_complateion_date">Total Util Time:</label>
+
+                                    {{form.total_util_time}}
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-submit-btn" style="width: 100px;">
+                            <input type="submit" value="Submit" />
+                        </div>
+                </form>
+            </div>
+            
+        
+    </div>
+    <div style="width: 400px; margin-top: 20px;">
+        <div class="card text-light text-center bg-white pb-2">
+            <h1 style="color: black;">Tasks</h1>
+          <div class="card-body text-dark">
+            {% comment %} <h3 class="card-title">Project Module <a href="{% url "create_project_module" project_id %}" class="btn btn-primary">Create Module</a></h3> {% endcomment %}
+            <table class="table">
+              <thead class="table-dark">
+                <th>Project</th>
+                <th>Action</th>
+              </thead>
+              <tbody>
+                {% for i in task %}
+                <tr>
+                  <td>{{i.title}}</td>
+                  <td >
+                    <a href="" class="btn btn-primary">Show</a> 
+                    <a href="{% url 'delete_task_from_create_task' i.id project_id module_id %}" class="btn btn-danger">Delete</a> 
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+            <!-- <button class="btn bg-warning text-dark">Learn More</button> -->
+          </div>
+        </div>
+      </div>
+</div>
+
+{% endblock content %}

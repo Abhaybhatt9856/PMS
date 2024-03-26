@@ -1,0 +1,68 @@
+{% extends "../base.html" %} {% load static %} {% block csslink %}
+<link rel="stylesheet" href="{% static 'css/projects/module_show.css' %}" />
+{% endblock csslink %}
+{% block content %}
+<div class="regbox">
+  <div id="manager">
+      <div class="dev_dash_container">
+          <h1 class="dash-title">{{module.module_name}}</h1>
+          <hr>
+        <div style='display: flex;'>
+      <hr />
+      <div style="display: flex">
+        <div style="width: 500px;margin-left: 50px;">
+          <h3>Project : {{module.project}}</h3>
+          <div style="margin-top: 30px">
+            <h3>Model Description</h3>
+            {{module.description}}
+          </div>
+          <div style="margin-top: 30px">
+            <h3>Start Date</h3>
+            {{module.start_date}}
+          </div>
+          <div style="margin-top: 30px">
+            <h3>Estimated Hours</h3>
+            {{module.estimated_hours}}
+          </div>
+            <a href="{% url "edit_module" module.id project_id%}"  class="btn btn-primary">Edit</a> 
+        </div>
+    </div>
+        <div style="width: 600px; ">
+          <div class="card text-light text-center bg-white pb-2">
+            <div class="card-body text-dark">
+             
+              <table class="table">
+                <h1>Tasks  <a href="{% url "create_task" project_id module.id  %}" class="btn btn-primary">Create Task</a></h1>
+              
+                <thead class="table-dark">
+                  <th>Task</th>
+                  <th>Action</th>
+                  <th>Assign To</th>
+                </thead>
+                <tbody>
+      
+                  {% for i in task %}
+                  <tr>
+                    <td>{{i.title}}</td>
+                    <td>
+                     <a href= '{% url "show_task" i.id %}'class="btn btn-primary">Show</a>
+                      <a href="{% url "delete_task" i.id module.id project_id %}" class="btn btn-danger">Delete</a>
+                       <a href="{% url "assign_task" i.id module.id project_id %}" class="btn btn-primary">Assign Task</a>
+                    </td>
+                    <td></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+
+              <!-- <button class="btn bg-warning text-dark">Learn More</button> -->
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+    </div>
+    
+  </div>
+</div>
+{% endblock content %}

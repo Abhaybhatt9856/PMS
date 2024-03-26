@@ -1,0 +1,129 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+	--bs-light-rgb: 248, 249, 250;
+}
+
+.sidelight {
+	--bs-bg-opacity: 0.1;
+	background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity));
+  }
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50px;
+    margin-top: 45px;
+    height: 100%;
+    padding: 6px 14px;
+    transition: .5s;
+    z-index: 100;
+    
+   
+}
+
+.sidebar.active {
+    width: 230px;
+    background: rgba(0, 0, 0,.8);
+}
+
+.sidebar .logo-menu{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+   
+}
+
+.sidebar .logo-menu .logo {
+    font-size: 25px;
+    color: white;
+    pointer-events: none;
+    opacity: 0;
+    transition: .3s;
+}
+
+.sidebar.active .logo-menu .logo{
+    opacity: 1;
+    transition-delay: .2s;
+}
+
+.sidebar .logo-menu .toggle-btn{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 35px;
+    height: 35px;
+
+    font-size: 22px;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.sidebar.active .logo-menu .toggle-btn{
+    left: 90%;
+}
+
+.sidebar .list{
+    /* background-color: red; */
+    margin-top: 10px;
+    /* list-style: none; */
+}
+
+.list .list-item{
+    
+    list-style: none;
+    width: 100%;
+    height: 50%;
+    margin: 5px 0;
+    line-height: 50px;
+    transition: .5s;
+    white-space: nowrap;
+}
+
+.list .list-item a {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    /* background-color: blue; */
+    border-radius: 6px;
+    text-decoration: none;
+    transition: .5s;
+}
+
+.list .list-item.active a,
+.list .list-item a:hover
+{
+    background: rgba(255, 255, 255, .2);
+    color: yellow;
+    
+}
+
+.list .list-item a i{
+    /* min-width: 40px; */
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.sidebar .list-name{
+    padding-left: 10px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s;
+  
+}
+.sidebar.active .list-name{
+    opacity: 1;
+    pointer-events: auto;
+    transition-delay: calc(.2s * var(--i));
+
+}

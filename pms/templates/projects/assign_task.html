@@ -1,0 +1,79 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/projects/assign_task.css' %}" />
+{% endblock csslink %}
+
+{% block content %}
+<div class="regbox">
+    <div id="manager">
+        <div class="devreg_container">
+            <h1 class="form-title">Assign Task</h1>
+            <form method="post">
+                {% csrf_token %}
+                <div class="main-user-info">
+                    <div class="user-input-box">
+                        <div class="title-tech">
+                            <div class="indiv" style="pointer-events: none; width: 200px;" >
+                                <label for="id_title">Task</label>
+                                {{ form.taksid }}
+                                {% if form.taksid.errors %}
+                                <ul>
+                                    {% for error in form.taksid.errors %}
+                                    <li style="color: red;">{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label for="id_technology">Developer:</label>
+                                <div class="indiv">
+                                    {{ form.userid }}
+                                    {% if form.userid.errors %}
+                                    <ul>
+                                        {% for error in form.userid.errors %}
+                                        <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-submit-btn" style="width: 100px;">
+                    <input type="submit" value="Submit" />
+                </div>
+            </form>
+        </div>
+        <div style="width: 400px; margin-top: 20px;">
+          <div class="card text-light text-center bg-white pb-2">
+              <h1 style="color: black;">Tasks</h1>
+              <div class="card-body text-dark">
+                  <table class="table">
+                      <thead class="table-dark">
+                          <th>Project</th>
+                          <th>Action</th>
+                      </thead>
+                      <tbody>
+                          {% for i in task %}
+                          <tr>
+                              <td>{{i.title}}</td>
+                              <td>
+                                  <a href="" class="btn btn-primary">Show</a>
+                                  {% comment %}
+                                  <a href="{% url 'delete_task_from_create_task' i.id project_id module_id %}" class="btn btn-danger">Delete</a>
+                                  {% endcomment %}
+                              </td>
+                          </tr>
+                          {% endfor %}
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+    </div>
+   
+    </div>
+</div>
+{% endblock content %}

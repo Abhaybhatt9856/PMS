@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<style>
+  #div1{
+    /* height: 100vh; */
+    background-image: url({% static 'img/d.jpg' %}); 
+    background-position:300px;
+    background-size: cover;
+    
+    
+    /* background-repeat: repeat; */
+ }
+</style>
+<div id="div1">
+  <div style="height: 600px; display: flex;  ">
+    <form  method="post">
+      {% csrf_token %}
+      <div style="margin-top: 200px; margin-left: 100px; color: white;">
+      <h1 style="font-size: 50px;">Are you sure want to delete me?</h1>
+      <div style="display: flex;">
+      <a href="javascript:history.go(-1)" class="btn btn-primary" style="width: 150px; margin-left: 400px;">Back</a>
+      <input type="submit" value="Delete" class="btn btn-danger" style="width: 150px; margin-left: 50px;">
+    </div>
+    </div>
+    </form>
+  </div>
+</div>
+{% endblock content %}

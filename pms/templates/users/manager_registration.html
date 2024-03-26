@@ -1,0 +1,106 @@
+{% extends "../base.html" %} {% load static %} {% block csslink %}
+<link rel="stylesheet" href="{% static 'css/users/man_reg.css' %}" />
+{% endblock csslink %}
+{% block content %}
+<div class="regbox">
+  <div id="manager">
+    <div class="devreg_container">
+      <h1 class="form-title">Manager Registration</h1>
+      <form method="post">
+        <div class="main-user-info">
+          <div class="user-input-box">
+            {% csrf_token %}
+            <label for="{{form.username.id_for_label }}">Username:</label>
+            <input
+              type="text"
+              name="{{form.username.name}}"
+              class="form"
+              placeholder=" Enter Your Username"
+            />
+            <span class="text-danger">{{form.username.errors}}</span>
+          </div>
+          <div class="user-input-box">
+            <label for="{{form.email.id_for_label }}">Email:</label>
+            <input
+              type="text"
+              name="{{form.email.name}}"
+              class="form"
+              placeholder=" Enter Your Email"
+            />
+            <span class="text-danger">{{form.email.errors}}</span>
+          </div>
+          <div class="user-input-box">
+            <label for="{{form.first_name.id_for_label }}">First Name</label>
+            <input
+              type="text"
+              name="{{form.first_name.name}}"
+              class="form"
+              placeholder=" Enter Your first name"
+            />
+            <span class="text-danger">{{form.frist_name.errors}}</span>
+          </div>
+          <div class="user-input-box">
+            <label for="{{form.last_name.id_for_label }}">First Name</label>
+            <input
+              type="text"
+              name="{{form.last_name.name}}"
+              class="form"
+              placeholder=" Enter Your last name"
+            />
+            <span class="text-danger">{{form.last_name.errors}}</span>
+          </div>
+          <div class="user-input-box">
+            <label for="{{form.age.id_for_label }}">Age</label>
+            <input
+              type="text"
+              name="{{form.age.name}}"
+              class="form"
+              placeholder=" Enter your Age"
+            />
+            <span class="text-danger">{{form.age.errors}}</span>
+          </div>
+          <div class="user-input-box">
+            <label for="{{form.salary.id_for_label }}">Salary</label>
+            <input
+              type="text"
+              name="{{form.salary.name}}"
+              class="form"
+              placeholder=" Enter Your Salary"
+            />
+            <span class="text-danger">{{form.salary.errors}}</span>
+          </div>
+          <div class="user-input-box">
+            <label for="{{form.password1.id_for_label }}">Password</label>
+            <input
+              type="text"
+              name="{{form.password1.name}}"
+              class="form"
+              placeholder=" Enter Password"
+            />
+            <span class="text-danger">{{form.password1.errors}}</span>
+          </div>
+          <div class="user-input-box">
+            <label for="{{form.password2.id_for_label}}"
+              >Confirm Password</label
+            >
+            <input
+              type="text"
+              name="{{form.password2.name}}"
+              class="form"
+              placeholder=" Enter Confirm Password"
+            />
+            <span class="text-danger">{{form.password2.errors}}</span>
+          </div>
+        </div>
+        <div class="form-submit-btn">
+          <input type="submit" value="Register" />
+        </div>
+        <div class="form-submit-btn">
+            Already have an Acount ?
+            <a href="{% url 'login' %}">Sign in</a>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,62 @@
+{% extends "../base.html" %} {% load static %} {% block csslink %}
+<link rel="stylesheet" href="{% static 'css/projects/edit_module.css' %}" />
+{% endblock csslink %} {% block content %}
+<div class="regbox">
+  <div id="manager">
+    <div class="devreg_container">
+      <h1 class="form-title">Edit Task</h1>
+      <form method="post">
+        {% csrf_token %}
+        <div class="main-user-info">
+          <div class="user-input-box">
+          <div class="title-tech">
+            <div class="indiv" style="pointer-events: none;">
+                <label for="id_technology">Project:</label>
+                {{form.project}}
+              </div>
+            <div class="indiv" style="pointer-events: none;">
+                <label for="id_title" >Module:</label>
+                {{ form.module }}
+            </div>
+            
+          </div>
+          <div class="title-tech">
+            <div class="indiv">
+                <label for="id_technology">Title:</label>
+                {{form.title}}
+              </div>
+            <div class="indiv">
+                <label for="id_title" >priority:</label>
+                {{ form.priority }}
+            </div>
+            
+          </div>
+          <label for="id_description">Description:</label>
+          {{form.description}}
+          <div class="indiv" style="pointer-events: none;">
+            <label for="id_title" >Status:</label>
+            {{ form.status }}
+        </div>
+          <div class="title-tech">
+            <div class="indiv">
+          <label for="id_start_date">Estimated minutes::</label>
+          {{form.estimated_minutes}}
+        </div>
+        <div class="title-tech">
+            <div class="indiv">
+          <label for="id_start_date">Total util time:</label>
+          {{form.total_util_time}}
+            </div>
+        </div> 
+       
+        </div>
+       
+        <div class="form-submit-btn">
+          <input type="submit" value="Update"  />
+        </div>
+      </form>
+    </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

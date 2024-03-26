@@ -1,0 +1,74 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/projects/project_report.css' %}" />
+{% endblock csslink %}
+{% block content %}
+<div class="regbox">
+  <div id="manager">
+    <div class="dev_dash_container">
+      <h1 class="dash-title">{{project.title}}</h1>
+      <hr />
+      <div style="display: flex">
+        <div style="width: 700px; margin-left: 50px;">
+          <h3>Project Status: {{project.project_status}}</h3>
+          <div style="margin-top: 30px">
+            <h3>Technology</h3>
+            {{project.technology}}
+          </div>
+
+          <div style="margin-top: 30px">
+            <h3>Project Description</h3>
+            {{project.description}}
+          </div>
+          <div style="margin-top: 30px">
+            <h3>Tasks</h3>
+            <table>
+                <tbody>
+                    {% for i in task  %}
+                    <tr>
+                        <td>{{i}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+          </div>
+
+          <div style="margin-top: 30px">
+            <h3>Start Date</h3>
+            {{project.start_date}}
+          </div>
+          <div style="margin-top: 30px">
+            <h3>Completion Date</h3>
+            {{project.completion_date}}
+          </div>
+          <div style="margin-top: 30px">
+            <h3>Estimated Hours</h3>
+            {{project.estimated_hours}}
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <div style="margin-left: 50px; margin-top: 10px;">
+        <button onclick="printContent()" class="btn btn-primary">Print</button>
+      </div>
+  </div>
+ 
+</div>
+
+
+<script>
+function printContent() {
+    var content = document.getElementById('manager').innerHTML;
+    var myWindow = window.open('', '', 'width=800,height=600');
+    myWindow.document.write('<html><head><title>Print</title>');
+    myWindow.document.write('</head><body>');
+    myWindow.document.write(content);
+    myWindow.document.write('</body></html>');
+    myWindow.document.close();
+    myWindow.print();
+}
+</script>
+
+{% endblock content %}

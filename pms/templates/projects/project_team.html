@@ -1,0 +1,95 @@
+{% extends "../base.html" %} {% load static %} {% block csslink %}
+<link rel="stylesheet" href="{% static 'css/projects/project_team.css' %}" />
+{% endblock csslink %} {% block content %}
+<div class="regbox">
+  <div id="manager">
+    <div class="devreg_container">
+      <h1 class="form-title">Project Team</h1>
+      <div style=" display: flex;">
+        <div style="width: 50%; padding-left: 80px;">
+          <form method="post">
+            {% csrf_token %}
+            <div class="main-user-info">
+              <div class="user-input-box">
+                <div class="title-tech">
+                  {% comment %} <div class="indiv" style="pointer-events: none;"> {% endcomment %}
+                  <div class="indiv" style='pointer-events: none;' >
+                    <label for="id_title"  >Title:</label>
+                    {{form.project}}
+                  </div>
+                  
+                  <div class="indiv">
+                    <label for="id_title">Developers:</label>
+                    {{form.user}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-submit-btn" style="width: 300px">
+                <input type="submit" value="Add" />
+            </div>
+            
+            <div style="width: 300px; margin-top: 80px">
+              <h1 class="form-title"> Team</h1>
+              <div class="card text-light text-center bg-white pb-2">
+                <div class="card-body text-dark">
+            
+                  <table class="table">
+                    
+                    <thead class="table-dark">
+                      <th>Developer</th>
+                      <th>Action</th>
+                    </thead>
+                    <tbody>
+                      {% for i in team_member %}
+                      <tr>
+                        <td>{{i.user}}</td>
+                        <td>
+                          <a href="{% url "delete_team_memeber" i.id delete_id  %}" class="btn btn-danger">Delete</a>
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                  <!-- <button class="btn bg-warning text-dark">learn More</button> -->
+                </div>
+                </div>
+          </div>
+          <!-- </form> -->
+        </div>
+        <div style=" width: 50%; display: flex;  flex-direction: column; align-items: center;">
+            <h1 class="form-title">Developer List</h1>
+            <div style="width: 300px;">
+              <div class="card text-light text-center bg-white pb-2">
+                <div class="card-body text-dark">
+            
+                  <table class="table">
+                    
+                    <thead class="table-dark">
+                      <th>Developer</th>
+                      <th>Action</th>
+                    </thead>
+                    <tbody>
+                  
+                      {% for i in developer %}
+                      <tr>
+                        <td>{{i.username}}</td>
+                        <td>
+                          <a href="{% url "project_show" i.id  %}" class="btn btn-primary">Show</a>
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                  <!-- <button class="btn bg-warning text-dark">learn More</button> -->
+                </div>
+                </div>
+          </div>
+          
+          </div>
+              
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

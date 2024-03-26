@@ -1,0 +1,60 @@
+{% load static %}
+{% block csslink %}
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+{% endblock csslink %}
+{% block content %}
+    <div class="sidebar  ">
+        <div class="logo-menu">
+            <h2 class='logo'>PMS</h2>
+            <i class='bx bx-menu toggle-btn'></i>
+        </div>
+
+        <ul class="list" style="padding-left: 0;">
+            <li class="list-item ">
+                <a href="{% url "home" %}">
+                    <i class='bx bx-home' ></i>
+                    <span class="list-name" style="--i:1;">Home</span>
+                </a>
+            </li>
+            <li class="list-item">
+                {% if request.user.is_manager is True %}
+                <a href="{% url 'man_dash' %}">
+                    <i class='bx bxs-dashboard' ></i>
+                    <span class="list-name" style="--i:2;">Dashboard</span>
+                </a>
+                {% else %}
+                <a href="{% url 'dev_dash' %}">
+                    <i class='bx bxs-dashboard' ></i>
+                    <span class="list-name" style="--i:2;">Dashboard</span>
+                </a>
+                {% endif %}
+            </li>
+            <li class="list-item">
+                <a href="#">
+                    <i class='bx bxs-user-rectangle' ></i>
+                    <span class="list-name" style="--i:3;">User</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="#">
+                    <i class='bx bx-list-ul' ></i>
+                    <span class="list-name" style="--i:4;">List</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="{% url "logout" %}">
+                    <i class='bx bx-log-out' ></i>
+                    <span class="list-name" style="--i:5;">Log Out</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="#">
+                    <i class='bx bx-log-in' ></i>
+                    <span class="list-name" style="--i:6;">Log In</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+{% endblock content %}

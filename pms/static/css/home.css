@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+* {
+	font-family: 'Montserrat', sans-serif;
+}
+body {
+	background: #6aabc5;
+}
+.section-padding {
+	padding: 100px 0;
+}
+.carousel-item {
+	height: 100vh;
+	min-height: 300px;
+}
+.carousel-caption {
+	margin-bottom: 100px;
+	z-index: 2;
+
+	
+}
+.section-header .whitep {
+	color: white;
+	font-weight: 700;
+	font-size: 20px;
+}
+.carousel-caption h5 {
+	font-size: 50px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	margin-top: 25px;
+
+}
+.carousel-caption p {
+	width: 60%;
+	margin: auto;
+	font-size: 18px;
+	line-height: 1.9;
+	font-weight: 500;
+}
+.carousel-inner:before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.7);
+	z-index: 1;
+}
+
+.w-100 {
+	height: 100vh;
+}
+.navbar-toggler {
+	padding: 1px 5px;
+	font-size: 18px;
+	line-height: 0.3;
+	background: #fff;
+}
+.portfolio .card {
+	box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.15);
+}
+.team .card {
+	box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.15);
+}
+.services .card-body i {
+	font-size: 50px;
+}
+.team .card-body i {
+	font-size: 20px;
+}
+
+#image-generator-top{
+	height: 620px;
+	background-color: #0a0f20;
+	background-image: radial-gradient(
+	  ellipse 40% 100% at 60% -10%,
+	  rgba(119, 138, 232, 0.3),
+	  rgba(119, 138, 232, 0)
+	);
+	background-repeat: no-repeat;
+	color: #fff;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	overflow: hidden;
+	position: relative;
+	/* background-color: red; */
+}
+
+#image-generator-top h1 {
+	color: #ffffffbb;
+	font-size: 50px;
+	font-weight: 600;
+	letter-spacing: 2px;
+	line-height: 3rem;
+  }
+  #image-generator-top h1 strong {
+	padding-top: 125px;
+	-webkit-text-fill-color: transparent;
+	background: linear-gradient(141deg, #9c26d7, #1eb1db);
+	-webkit-background-clip: text;
+	background-clip: text;
+	background-size: cover;
+	display: block;
+	font-size: 60px;
+	font-weight: 900;
+	line-height: 5rem;
+	margin-bottom: 10px;
+	text-transform: uppercase;
+  }
+  #image-generator-top p {
+	color: #ffffffbb;
+	font-size: 25px;
+	margin-top: 40px;
+	padding: 0 50px;
+  }
+  #image-generator-top .buttons {
+	gap: 30px;
+	justify-content: center;
+  }
+  #image-generator-top .button {
+	/* background: rgba(0, 0, 0, 0.22); */
+	border: none;
+	border: 1px solid rgb(250, 255, 0);
+	color: #ffffffcc;
+	font-size: 35px;
+	font-weight: 400;
+	margin: 20px;
+	height: 55px;
+	padding: 0 40px;
+	transition: .5s;
+	text-decoration: none;
+  }
+  #image-generator-top .button img {
+	opacity: 0.8;
+  }
+  #image-generator-top .button:hover {
+	/* background: transparent; */
+	/* box-shadow: 0 0 5px #ffbb02ec, -5px 0 20px rgb(255, 250, 0),
+	  5px 0 20px rgba(0, 255, 255, 0.7); */
+	/* color: #fff; */
+	background: rgba(255, 255, 255, .2);
+    color: yellow;
+    
+  }
+  #image-generator-top .button:hover img {
+	opacity: 1;
+  }
+  @media only screen and (max-width: 825px) {
+	#image-generator-top h1 {
+	  font-size: 1.2rem;
+	  line-height: 2rem;
+	}
+	#image-generator-top h1 strong {
+	  font-size: 4rem;
+	  line-height: 4.2rem;
+	}
+  #image-generator-top p {
+    font-size: 16px;
+    padding: 0;
+  }
+  #image-generator-top {
+    flex-direction: column;
+  }
+}
+  #photo-editing-text {
+	margin: 0 auto;
+	max-width: 800px;
+	text-align: center;
+	z-index: 3;
+  }
+  #photo-editing-text .buttons {
+    flex-direction: column;
+  }
+  
+/* @media only screen and (min-width: 768px) and (max-width: 991px) {
+	.carousel-caption {
+		bottom: 370px;
+	}
+	.carousel-caption p {
+		width: 100%;
+	}
+	.card {
+		margin-bottom: 30px;
+	}
+	.img-area img {
+		width: 100%;
+	}
+}
+@media only screen and (max-width: 767px) {
+	.navbar-nav {
+		text-align: center;
+	}
+	.carousel-caption {
+		bottom: 125px;
+	}
+	.carousel-caption h5 {
+		font-size: 17px;
+	}
+	.carousel-caption a {
+		padding: 10px 15px;
+		font-size: 15px;
+	}
+	.carousel-caption p {
+		width: 100%;
+		line-height: 1.6;
+		font-size: 12px;
+	}
+	.about-text {
+		padding-top: 50px;
+	}
+	.card {
+		margin-bottom: 30px;
+	}
+}
+ */

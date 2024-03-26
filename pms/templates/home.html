@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% load static %}
+
+    {% block title %}
+    <title>Home Page</title>
+    {% endblock title %}
+    <!-- All CSS -->
+    {% block csslink %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href=" {% static 'css/home.css' %} ">
+    {% endblock csslink %}
+
+{% block content %}
+         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src=" {% static "img/peakpx (1).jpg" %} " class="d-block w-100" alt="...">
+            {% comment %} <img src=" {% static "img/dev1.jpg" %} " class="d-block w-100" alt="..."> {% endcomment %}
+            <div class="carousel-caption">
+              <h5><b>Project Management System</b></h5>
+                              <p>Project management involves the planning and organization of a company's resources to move a specific task, event, or duty towards completion.</p>
+                              <p><a href="#image-generator-top" class="btn btn-warning mt-3">Register</a></p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src=" {% static "img/peakpx (4).jpg" %} " class="d-block w-100" alt="...">
+            <div class="carousel-caption">
+              <h5><b>Project Manager</b></h5>
+                              <p>It can involve a one-time project or an ongoing activity, and resources managed include personnel, finances, technology, and intellectual property.
+                            </p>
+                              <p><a href="{% url "login" %}" class="btn btn-warning mt-3">Login</a></p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="{% static "img/peakpx (5).jpg" %} " class="d-block w-100" alt="...">
+            <div class="carousel-caption">
+              <h5><b>Project Developer </b></h5>
+                              <p>Developer can start task, send to on progress and after send it to complete. Once task is assign to developer an email should be sent with task name and task detail.
+                              </p>
+                              <p><a href="{% url "login" %}" class="btn btn-warning mt-3">Login</a></p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      
+      <!-- Register bar start  -->
+      <div id="image-generator-top" class="wrap">
+
+        <div id="photo-editing-text">
+            <h1><strong>Let's create a project together...</strong>Unlock the power of collaboration</h1>
+            <p>Register as a Manager to lead and strategize, or as a Developer to innovate and create.</p>
+        
+            <div class="buttons top-60">
+                <a href="{% url "man_reg" %}"  class="button outline large rounded"><img src="static/img/manager.png" alt="" width="30px" height="30px"> As Manager</a>
+                <a href="{% url "dev_reg" %}"  class="button outline large rounded"><img src="static/img/coding.png" alt="" width="30px" height="30px"> As Developer</a>
+            </div>
+        </div>
+    </div>
+      <!-- about section starts -->
+      <section id="about" class="about section-padding">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-4 col-md-12 col-12">
+                      <div class="about-img">
+                          <img src={% static 'img/service2.jpg' %} alt="" class="img-fluid">
+                      </div>
+                  </div>
+                  <div class="col-lg-8 col-md-12 col-12 ps-lg-5 mt-md-5">
+                      <div class="about-text">
+                            <h2>We Provide the Best Quality <br/> Services Ever</h2>
+                            <p>Project management involves the planning and organization of a company's resources to move a specific task, event, or duty towards completion. It can involve a one-time project or an ongoing activity, and resources managed include personnel, finances, technology, and intellectual property.</p>
+                            <a href="#" class="btn btn-warning">Learn More</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+      <!-- about section Ends -->
+      <!-- services section Starts -->
+      <section class="services section-padding" id="services">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="section-header text-center pb-5">
+                          <h2><b>Our Services</b></h2>
+                          <p class="whitep">We are Building   Project Management application for our client. <br> This is inhouse project for the company.</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-12 col-lg-4">
+                    <div class="card text-white text-center bg-dark pb-2">
+                        <div class="card-body">
+                            <i class="bi bi-laptop"></i>
+                            <h3 class="card-title">Best Quality</h3>
+                            <p class="lead">PMS is to optimize and get high production from the development team and identify the correct resource allocation path.</p>
+                            <button class="btn bg-warning text-dark">Read More</button>
+                        </div>
+                    </div>
+                </div>
+                  <div class="col-12 col-md-12 col-lg-4">
+                      <div class="card text-white text-center bg-dark pb-2">
+                          <div class="card-body">
+                            <i class="bi bi-journal"></i>
+                              <h3 class="card-title">Management</h3>
+                              <p class="lead">Project Management System does't want a lot of resources occupied on 1 project and other projects are waiting for resources.</p>
+                              <button class="btn bg-warning text-dark">Read More</button>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-12 col-md-12 col-lg-4">
+                      <div class="card text-white text-center bg-dark pb-2">
+                          <div class="card-body">
+                            <i class="bi bi-intersect"></i>
+                              <h3 class="card-title">Integrity</h3>
+                              <p class="lead"> Project Management System also tracks who is working on what and from how many days. apps also track the performance of the developer. </p>
+                              <button class="btn bg-warning text-dark">Read More</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+      <!-- services section Ends -->
+
+    <!-- All Js -->
+    <script src="{% static "js/bootstrap.bundle.min.js" %}"></script>
+
+    {% endblock content %}
+         
+

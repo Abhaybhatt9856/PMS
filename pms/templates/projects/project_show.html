@@ -1,0 +1,188 @@
+{% extends "../base.html" %} {% load static %} {% block csslink %}
+<link rel="stylesheet" href="{% static 'css/projects/project_show.css' %}" />
+{% endblock csslink %} {% block content %}
+<div class="regbox">
+  <div id="manager">
+    <div class="dev_dash_container">
+      <h1 class="dash-title">{{project.title}}</h1>
+      <hr />
+      <div style="display: flex">
+        <div style="width: 700px; margin-left: 50px;">
+          <h3>Project Status: {{project.project_status}}</h3>
+          <div
+            style="display: flex; justify-content: space-between; width: 350px"
+          >
+            <form
+              action="{% url 'change_project_status' pk=project.id project_id=project.id status='Active' %}"
+              method="post"
+            >
+              {% csrf_token %}
+              <input type="submit" value="Active" />
+            </form>
+            <form
+              action="{% url 'change_project_status' pk=project.id project_id=project.id status='Completed' %}"
+              method="post"
+            >
+              {% csrf_token %}
+              <input type="submit" value="Completed" />
+            </form>
+            <form
+              action="{% url 'change_project_status' pk=project.id project_id=project.id status='Cancelled' %}"
+              method="post"
+            >
+              {% csrf_token %}
+              <input type="submit" value="Cancelled" />
+            </form>
+            <form
+              action="{% url 'change_project_status' pk=project.id project_id=project.id status='On Hold' %}"
+              method="post"
+            >
+              {% csrf_token %}
+              <input type="submit" value="On hold" />
+            </form>
+          </div>
+          <div style="margin-top: 30px">
+            <h3>Technology</h3>
+            {{project.technology}}
+          </div>
+
+          <div style="margin-top: 30px">
+            <h3>Project Description</h3>
+            {{project.description}}
+          </div>
+          <div style="margin-top: 30px">
+            <h3>Start Date</h3>
+            {{project.start_date}}
+          </div>
+          <div style="margin-top: 30px">
+            <h3>Complation Date</h3>
+            {{project.complateion_date}}
+          </div>
+          <div style="margin-top: 30px">
+            <h3>Estimated Hours</h3>
+            {{project.estimated_hours}}
+          </div>
+          <a href="{% url 'project_edit' pk=project.id %}" class="btn btn-primary">Edit</a>
+        </div>
+        <div style="margin-left: 20px">
+          <h1 class="dash-title">Task Graph</h1>
+          <hr />
+          <canvas id="myChart"></canvas>
+
+          <b>
+            <br />
+            <br />
+            <br />
+            Complate Projects : {{active}}<br />
+            Complate Projects : {{completed}}<br />
+            Complate Projects : {{cancelled}}<br />
+            Complate Projects : {{Hold}}<br />
+          </b>
+        </div>
+      </div>
+      <div class="projectdata">
+        <!-- <section id="portfolio" class="portfolio section-padding"> -->
+        <section id="portfolio" class="portfolio ">
+          <div style="min-height: 500px; display: flex ; justify-content: center; padding-top: 40px;">
+            <div class="row">
+              <div style="width: 450px;">
+                <div class="card text-light text-center bg-white pb-2">
+                  <div class="card-body text-dark">
+                    <h3 class="card-title">Project Module <a href="{% url "create_project_module" project_id %}" class="btn btn-primary">Create Module</a></h3>
+                    <table class="table">
+                      <thead class="table-dark">
+                        <th>Project</th>
+                        <th>Action</th>
+                      </thead>
+                      <tbody>
+                        {% for i in project_module %}
+                        <tr>
+                          <td>{{i.module_name}}</td>
+                          <td>
+                            <a href="{% url "projecct_module_show" i.id project.id  %}" class="btn btn-primary">Show</a>
+                            <a href="{% url "delete_module" i.id project_id  %}" class="btn btn-danger">Delete</a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+
+                    <!-- <button class="btn bg-warning text-dark">Learn More</button> -->
+                  </div>
+                </div>
+              </div>
+              <div style="width: 500px;">
+                <div class="card text-light text-center bg-white pb-2">
+                  <div class="card-body text-dark">
+                  
+                    <h3 class="card-title">Project Team <a href="{% url "project_team" project_id %}" class="btn btn-primary">Add Member</a></h3>
+                    
+                    <table class="table">
+                 
+                      <thead class="table-dark">
+                        <th>Project</th>
+                        <th>Action</th>
+                      </thead>
+                      <tbody>
+                        {% for i in developer %}
+                        <tr>
+                          <td>{{i.user}}</td>
+                          <td>
+                            <a href="{% url "project_show" i.id  %}" class="btn btn-primary">Show</a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                    <!-- <button class="btn bg-warning text-dark">learn More</button> -->
+                  </div>
+                </div>
+              </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- javascript -->
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Active', 'completed', 'canceled', 'hold'],
+        datasets: [{
+          label: 'Project Status',
+          data: [{{ active }},
+          {{ completed }},
+          {{ cancelled }},
+          {{ Hold }}],
+          backgroundColor: [
+          'green',   // Active - Red
+          'Blue',    // Completed - Blue
+          'red',    // Cancelled - Yellow
+          'Yellow'     // On Hold - Green
+        ],
+          borderWidth: 1
+        }],
+
+
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+  {% endblock content %}
+</div>
