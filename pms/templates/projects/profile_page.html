@@ -1,0 +1,38 @@
+{% extends "../base.html" %} 
+{% load static %} 
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/projects/profile_page.css' %}" />
+{% endblock csslink %} 
+{% block content %}
+<div class="regbox">
+  <div id="manager">
+    <div class="devreg_container">
+        <div class="profile_container">
+            <div class="profile-header">
+                {{data.img}}
+                <img src="{{data.img.url}}" alt="Profile Picture">
+                <h1>{{request.user.username}}</h1>
+            </div>
+            <div class="change-profile-image">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form.img}}
+                    {{form.user }}
+                    <button type="submit">Upload</button>
+                </form>
+            </div>
+            <div class="user-info">
+                <p>Email: {{request.user.email}}</p>
+                <p>Location: City, Country</p>
+                <p>Joined: January 1, 2022</p>
+            </div>
+            <div class="additional-details">
+                <h2>About Me</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget risus a turpis fermentum pharetra. Nullam vehicula, tortor a varius vulputate, mi lacus fringilla mi, eget ullamcorper neque justo sit amet lorem.</p>
+            </div>
+           
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

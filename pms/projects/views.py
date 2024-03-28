@@ -5,8 +5,8 @@ from django.views.generic.detail import DetailView
 from django.shortcuts import redirect
 from django.urls import reverse,reverse_lazy
 from django.views import View
-from .models import Project,Project_team,User,Project_module,Task,User_task
-from .forms import FormProject,FormProjectEdit,FormProjectTeam,FormCreateModule,FormTask,FormEditModule,FormEditTask,FormAssignTask
+from .models import Project,Project_team,User,Project_module,Task,User_task,Profile_image
+from .forms import FormProject,FormProjectEdit,FormProjectTeam,FormCreateModule,FormTask,FormEditModule,FormEditTask,FormAssignTask,FormProfileImage
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
 from django.utils.decorators import method_decorator
@@ -293,15 +293,34 @@ class ProjectReport(DetailView):
         context["task"] = Task.objects.filter(project=self.kwargs['pk'])
         return context
     
+@method_decorator(login_required, name='dispatch')
+@method_decorator(never_cache, name='dispatch')  
+class ProfilePage(CreateView):
+    model=Profile_image
+    form_class=FormProfileImage
+    template_name='projects/profile_page.html'
+    def get_success_url(self) -> str:
+        success_url=reverse_lazy('profile_page',kwargs={'pk':self.kwargs['pk']})
+        return success_url
+    
+    def get_initial(self):
+        initial = super().get_initial()
+        user = self.kwargs.get('pk')
+        if user:
+            user_id = User.objects.get(pk=user)
+            initial['user'] = user_id 
+        return initial
 
-
-
-
-
-
-
-
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            context["data"] = Profile_image.objects.get(user=self.kwargs['pk']) 
+        except Profile_image.DoesNotExist:
+            context['data']=None
+       
+        return context
+    
+ 
 
 
 

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Project,Project_team,Project_module,Task,User_task
+from .models import Project,Project_team,Project_module,Task,User_task,Profile_image
 
 class FormProject(forms.ModelForm):
     class Meta:
@@ -45,3 +45,7 @@ class FormAssignTask(forms.ModelForm):
         model=User_task
         fields="__all__"
 
+class FormProfileImage(forms.ModelForm):
+    class Meta:
+        model=Profile_image
+        fields="__all__"

@@ -83,3 +83,10 @@ class Task(models.Model):
 class User_task(models.Model):
     userid=models.ForeignKey(User, on_delete=models.CASCADE)
     taksid=models.OneToOneField(Task, on_delete=models.CASCADE)
+
+class Profile_image(models.Model):
+    user=models.OneToOneField(User, on_delete=models.CASCADE)
+    img=models.ImageField( upload_to='Profile_Image', height_field=None, width_field=None, max_length=None)
+
+    # def __str__(self) -> str:
+    #     return str(self.user)

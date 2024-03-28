@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import CreateProject,ProjectList,ProjectShow,ChangeProjectStatus,ProjectEdit,ProjectTeam,DeleteProjectMember,CreateProjectModule,DeleteModuleFromCreateModule,DeleteModule,ProjectModuleShow,CreateTask,EditModule,DeleteTaskFromCreateTask,ShowTask,ChangeTaskStatus,EditTask,DeleteTask,AssignTask,UpdateStatusView,ProjectReport
+from .views import CreateProject,ProjectList,ProjectShow,ChangeProjectStatus,ProjectEdit,ProjectTeam,DeleteProjectMember,CreateProjectModule,DeleteModuleFromCreateModule,DeleteModule,ProjectModuleShow,CreateTask,EditModule,DeleteTaskFromCreateTask,ShowTask,ChangeTaskStatus,EditTask,DeleteTask,AssignTask,UpdateStatusView,ProjectReport,ProfilePage
 from django.contrib.auth.views import LogoutView
-
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
    path('create_project/',CreateProject.as_view(),name='create_project'),
@@ -26,4 +27,6 @@ urlpatterns = [
    path('assign_task/<int:task_id>/<module_id>/<project_id>',AssignTask.as_view(),name='assign_task'),
    path('update_status/<int:pk>',UpdateStatusView.as_view(),name='update_status'),
    path('project_report/<int:pk>/',ProjectReport.as_view(),name='project_report'),
+   path('profile_page/<int:pk>/',ProfilePage.as_view(),name='profile_page'),
+
 ]
